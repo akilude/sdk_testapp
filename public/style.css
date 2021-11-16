@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Open Sans";
+}
+  
+  
+#main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+  
+  
+#iframe{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: block;
+} 
+
+
+#iframe.hidden {
+    display: none;
+}
+ 
+body {
+    background-color: #fefefe;
+    color: #343f53;
+}
+  
+
+  
+  
+  

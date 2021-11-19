@@ -16,6 +16,10 @@ function createParticipant(name){
     let user_id = new Date().getTime();
 
     $.post("/createParticipant", {name: name,roomname:roomname, user_id:user_id, is_host:false}, function(data) { 
+        if(data && data.error){
+            alert(data.msg);
+            return;
+        }
         participant_id = data.participant_id;
         startCall();
     })

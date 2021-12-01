@@ -36,12 +36,19 @@ $("#start-meeting-form").on("submit", function(event) {
         return;
     }
 
-    // send a post ajax request to the server 
-    $.post("/getRoomName", {name: name}, function(data) {
-        roomname = data.roomname;
-
-        // create a participant
-        createParticipant(name);
-    })
+    $.ajax({
+        url: "/getRoomName",
+        type: "POST",
+        data: {name: name},
+        dataType: 'json', // lowercase is always preferered though jQuery does it, too.
+        success: function(data){
+            roomname = data.roomname;
+            console.log(roomname);
+            // create a participant
+            createParticipant(name);
+        },error: function(error){
+            // alert(error);
+        }
+    });
     return false;
 });

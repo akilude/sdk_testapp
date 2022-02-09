@@ -101,4 +101,113 @@ app.post("/createParticipant", function(req, res) {
 
 
 
+
+
+app.post("/createWebinar", function(req, res) {
+    let title = req.body.title || "";
+    let description = req.body.description || "";
+    let image_url = req.body.image_url || ""; //optional
+    let start_day = req.body.start_day || ""; //optional
+    let start_month = req.body.start_month || ""; //optional
+    let start_year = req.body.start_year || ""; //optional
+    let start_hour = req.body.start_hour || ""; //optional
+    let start_minute = req.body.start_minute || ""; //optional
+    let fb_key = req.body.fb_key || ""; //optional
+    let yt_key = req.body.yt_key || ""; //optional
+    let duration = req.body.duration || 60; //optional
+
+    //set url
+    let url = 'https://developers.vidphone.me/webinars/create';
+
+    //set header
+    var headers = {
+        'Authorization': 'Api-Key '+API_KEY,
+    };
+
+    var data = {
+        "organization_id": ORGANIZATION_ID,
+        title: title, 
+        description: description,
+        image_url: image_url,
+        start_day: start_day,
+        start_month: start_month,
+        start_year: start_year,
+        start_hour: start_hour,
+        start_minute: start_minute,
+        fb_key: fb_key,
+        yt_key: yt_key,
+        duration: Number(duration)
+    }
+
+    //set request parameter
+    request.post({headers: headers, url: url, form: data, method: 'POST'}, function (e, r, body) {
+        var obj = JSON.parse(body);
+        return res.send(obj)
+    });
+})
+
+
+
+
+
+app.post("/createPresenter", function(req, res) {
+    let name = req.body.name || "";
+    let profile_img_url = req.body.profile_img_url || ""; //optional
+    let room = req.body.room || "";
+    let user_id = req.body.user_id || ""; //optional
+
+    //set url
+    let url = 'https://developers.vidphone.me/webinars/create-presenter';
+
+    //set header
+    var headers = {
+        'Authorization': 'Api-Key '+API_KEY,
+    };
+
+    var data = {
+        "organization_id": ORGANIZATION_ID,
+        name: name, 
+        profile_img_url: profile_img_url,
+        room: room,
+        user_id: user_id,
+    }
+
+    //set request parameter
+    request.post({headers: headers, url: url, form: data, method: 'POST'}, function (e, r, body) {
+        var obj = JSON.parse(body);
+        return res.send(obj)
+    });
+})
+
+
+
+app.post("/createSubscriber", function(req, res) {
+    let name = req.body.name || "";
+    let room = req.body.room || "";
+    let user_id = req.body.user_id || ""; //optional
+
+    //set url
+    let url = 'https://developers.vidphone.me/webinars/create-subscriber';
+
+    //set header
+    var headers = {
+        'Authorization': 'Api-Key '+API_KEY,
+    };
+
+    var data = {
+        "organization_id": ORGANIZATION_ID,
+        name: name, 
+        room: room,
+        user_id: user_id,
+    }
+
+    //set request parameter
+    request.post({headers: headers, url: url, form: data, method: 'POST'}, function (e, r, body) {
+        var obj = JSON.parse(body);
+        return res.send(obj)
+    });
+})
+
+
+
 app.listen(port, host);

@@ -52,3 +52,124 @@ $("#start-meeting-form").on("submit", function(event) {
     });
     return false;
 });
+
+
+
+
+$("#start-webinar-form").on("submit", function(event) {
+    event.preventDefault();
+    let title = $("#webinar-title-input").val();
+    let description = $("#webinar-desc-input").val();
+    let duration = 60;
+
+    if(!title || title == "" || title.trim() == "") {
+        return;
+    }
+
+    $.ajax({
+        url: "/createWebinar",
+        type: "POST",
+        data: {title: title, description:description},
+        dataType: 'json', // lowercase is always preferered though jQuery does it, too.
+        success: function(data){
+            console.log(data);
+            let room = data.room;
+            showWebinarOptionsForRoom(room);
+        },error: function(error){
+            // alert(error);
+        }
+    });
+    return false;
+});
+
+
+
+
+
+$("#presenter-webinar-form").on("submit", function(event) {
+    event.preventDefault();
+    let room = $("#presenter-webinar-room").val();
+    let name = $("#presenter-name").val();
+
+    if(!room || room == "" || room.trim() == "") {
+        return;
+    }
+
+    $.ajax({
+        url: "/createPresenter",
+        type: "POST",
+        data: {name:name, room:room},
+        dataType: 'json', // lowercase is always preferered though jQuery does it, too.
+        success: function(data){
+            let id = data.id;
+
+            let iframe = document.getElementById("iframe");
+            iframe.src = "https://test1.vidphon.com/iframe_presenter/"+room+"/"+id;
+            iframe.classList.remove("hidden");
+        },error: function(error){
+            // alert(error);
+        }
+    });
+    return false;
+});
+
+
+
+
+
+
+$("#subscriber-webinar-form").on("submit", function(event) {
+    event.preventDefault();
+    let room = $("#subscriber-webinar-room").val();
+    let name = $("#subscriber-name").val();
+
+    if(!room || room == "" || room.trim() == "") {
+        return;
+    }
+
+    $.ajax({
+        url: "/createSubscriber",
+        type: "POST",
+        data: {name:name, room:room},
+        dataType: 'json', // lowercase is always preferered though jQuery does it, too.
+        success: function(data){
+            let id = data.id;
+
+            let iframe = document.getElementById("iframe");
+            iframe.src = "https://test1.vidphon.com/iframe_subscriber/"+room+"/"+id;
+            iframe.classList.remove("hidden");
+        },error: function(error){
+            // alert(error);
+        }
+    });
+    return false;
+});
+
+
+
+
+
+
+
+
+function showWebinarOptionsForRoom(room){
+    $("#webinar-form").hide();
+    $("#webinar-label").hide();
+    $("#webinar-room-span").val(room);
+    $("#webinar-form-1").show();
+}
+
+
+
+$("#copy-room-btn").on("click", function(event) {
+    event.preventDefault();
+    let room = $("#webinar-room-span").val();
+
+    $("#copy-room-btn").text("Room copied!");
+
+    setTimeout(()=>{
+        $("#copy-room-btn").text("Copy Room");
+    },3000);
+    navigator.clipboard.writeText(room);
+    return false;
+})

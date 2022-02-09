@@ -17,23 +17,49 @@
 
     <div id="main-div">
         <img alt="logo" src="https://vidphone.me/static/images/logo.png" style="width:90px;">
-        <h4 class="text-center">Meeting Demo app</h4>
-        <p>Looking for the webinar demo, find it <a href="/webinar.html">here</a></p>
+        <h4 class="text-center">Webinar Demo app</h4>
+        <p>Looking for the meeting demo? Find it <a href="/">here</a></p>
         <br>
         <!-- <br> -->
 
-        <h6 class="text-center">Please enter your name to get started</h6>
-        <div class="row w-100">
+        <h6 class="text-center" id="webinar-label">Please enter a title & description of your webinar to get started</h6>
+        <div class="row w-100" id="webinar-form">
             <div class="col-lg-4 col-md-4 col-12 text-center offset-lg-4 offset-md-4 offset-0">
-                <form id="start-meeting-form">
-                    <div class="mb-3 mt-4">
-                        <!-- <label for="exampleFormControlInput1" class="form-label">Your Name</label> -->
-                        <input type="text" class="form-control" id="name-input" placeholder="Your Name">
+                <form id="start-webinar-form">
+                    <div class="mb-1 mt-4">
+                        <input type="text" class="form-control" id="webinar-title-input" placeholder="Webinar Title">
+                    </div>
+                    <div class="mb-1">
+                        <input type="text" class="form-control" id="webinar-desc-input" placeholder="Webinar description">
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-primary w-100" type="submit">Join Meeting</button>
+                        <button class="btn btn-primary w-100" type="submit">Create Webinar</button>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <div class="row w-100 " id="webinar-form-1" style="display:none">
+            <div class="col-lg-4 col-md-4 col-12 text-center offset-lg-4 offset-md-4 offset-0">
+                <h4>
+                    Webinar created.
+                </h4>
+
+                <div class="mb-1 mt-4">
+                    <label for="webinar-title-input">Webinar Room</label>
+                    <input type="text" class="form-control" id="webinar-room-span" readonly>
+                    <button class="btn btn-secondary w-100 mt-1" id="copy-room-btn">Copy Room</button>
+                </div>
+
+                <a class="btn btn-primary w-100 mt-4" href="/webinar-presenter.html" target="_blank">
+                    Join as Presenter
+                </a>
+
+                <a class="btn btn-primary w-100 mt-1" href="/webinar-subscriber.html" target="_blank">
+                    Join as Subscriber
+                </a>
+
+
             </div>
         </div>
     </div>

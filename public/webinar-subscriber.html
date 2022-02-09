@@ -17,21 +17,19 @@
 
     <div id="main-div">
         <img alt="logo" src="https://vidphone.me/static/images/logo.png" style="width:90px;">
-        <h4 class="text-center">Meeting Demo app</h4>
-        <p>Looking for the webinar demo, find it <a href="/webinar.html">here</a></p>
-        <br>
-        <!-- <br> -->
+        <h4 class="text-center pt-2">Webinar - View Stream as subscriber</h4>
 
-        <h6 class="text-center">Please enter your name to get started</h6>
-        <div class="row w-100">
+        <div class="row w-100" id="subscriber-webinar-form">
             <div class="col-lg-4 col-md-4 col-12 text-center offset-lg-4 offset-md-4 offset-0">
-                <form id="start-meeting-form">
-                    <div class="mb-3 mt-4">
-                        <!-- <label for="exampleFormControlInput1" class="form-label">Your Name</label> -->
-                        <input type="text" class="form-control" id="name-input" placeholder="Your Name">
+                <form id="start-webinar-form">
+                    <div class="mb-1 mt-4">
+                        <input type="text" class="form-control" id="subscriber-webinar-room" placeholder="Webinar Room">
                     </div>
-                    <div class="mb-3">
-                        <button class="btn btn-primary w-100" type="submit">Join Meeting</button>
+                    <div class="mb-1">
+                        <input type="text" class="form-control" id="subscriber-name" placeholder="Subscriber Name">
+                    </div>
+                    <div class="mb-1">
+                        <button class="btn btn-primary w-100" type="submit">View Stream</button>
                     </div>
                 </form>
             </div>
